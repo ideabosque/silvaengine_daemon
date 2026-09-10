@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "silvaengine-daemon"
+version = "0.0.1"
+description = "Protocol-neutral daemon substrate for SilvaEngine"
+requires-python = ">=3.10"
+dependencies = [
+    "silvaengine-utility",
+    "silvaengine-dynamodb-base",
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+postgresql = ["SQLAlchemy>=1.4", "psycopg2-binary>=2.9"]
+dev = ["pytest>=7.0", "pytest-asyncio>=0.21", "pytest-cov>=4.0"]
+
+[tool.setuptools.packages.find]
+include = ["silvaengine_daemon*"]
+
+[tool.setuptools.package-data]
+silvaengine_daemon = ["config/*.yaml", "config/plugins/*.yaml"]

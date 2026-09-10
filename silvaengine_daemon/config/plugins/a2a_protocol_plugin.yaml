@@ -1,0 +1,23 @@
+version: 1
+plugin:
+  name: a2a_protocol_plugin
+  package: a2a_protocol_plugin
+  enabled: true
+  protocol: a2a
+  routes:
+    graphql:
+      dispatch: dispatch_graphql
+      partition_policy: request_context
+      methods: [POST]
+    jsonrpc:
+      dispatch: dispatch_a2a
+      partition_policy: endpoint_part
+      methods: [POST]
+    sse_message:
+      dispatch: dispatch_sse_message
+      partition_policy: endpoint_part
+      methods: [POST]
+    agent_card:
+      dispatch: dispatch_agent_card
+      partition_policy: endpoint_only
+      methods: [GET]

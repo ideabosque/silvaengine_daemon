@@ -1,0 +1,44 @@
+version: 1
+router:
+  default_partition_policy: request_context
+  plugin_module_files:
+    - plugins/a2a_protocol_plugin.yaml
+    - plugins/mcp_protocol_plugin.yaml
+    - plugins/capability_mcp_plugin.yaml
+  routes:
+    - name: a2a_graphql
+      plugin: a2a_protocol_plugin
+      plugin_route: graphql
+    - name: a2a_jsonrpc
+      plugin: a2a_protocol_plugin
+      plugin_route: jsonrpc
+    - name: a2a_sse_message
+      plugin: a2a_protocol_plugin
+      plugin_route: sse_message
+    - name: a2a_agent_card
+      plugin: a2a_protocol_plugin
+      plugin_route: agent_card
+    - name: mcp_graphql
+      plugin: mcp_protocol_plugin
+      plugin_route: graphql
+    - name: mcp_jsonrpc
+      plugin: mcp_protocol_plugin
+      plugin_route: jsonrpc
+    - name: mcp_sse_message
+      plugin: mcp_protocol_plugin
+      plugin_route: sse_message
+    - name: mcp_async
+      plugin: mcp_protocol_plugin
+      plugin_route: async_execute
+    - name: mcp_cache_refresh
+      plugin: mcp_protocol_plugin
+      plugin_route: cache_refresh
+    - name: mcp_cache_clear
+      plugin: mcp_protocol_plugin
+      plugin_route: cache_clear
+    - name: mcp_info
+      plugin: mcp_protocol_plugin
+      plugin_route: info
+    - name: capability_mcp_graphql
+      plugin: capability_mcp_plugin
+      plugin_route: graphql

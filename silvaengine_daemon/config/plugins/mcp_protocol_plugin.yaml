@@ -1,0 +1,35 @@
+version: 1
+plugin:
+  name: mcp_protocol_plugin
+  package: mcp_protocol_plugin
+  enabled: true
+  protocol: mcp
+  routes:
+    graphql:
+      dispatch: dispatch_graphql
+      partition_policy: request_context
+      methods: [POST]
+    jsonrpc:
+      dispatch: dispatch_mcp
+      partition_policy: endpoint_part
+      methods: [POST]
+    sse_message:
+      dispatch: dispatch_sse_message
+      partition_policy: endpoint_part
+      methods: [POST]
+    async_execute:
+      dispatch: dispatch_mcp_async
+      partition_policy: endpoint_part
+      methods: [POST]
+    cache_refresh:
+      dispatch: dispatch_cache_refresh
+      partition_policy: endpoint_part
+      methods: [POST]
+    cache_clear:
+      dispatch: dispatch_cache_clear
+      partition_policy: endpoint_part
+      methods: [DELETE]
+    info:
+      dispatch: dispatch_mcp_info
+      partition_policy: endpoint_part
+      methods: [GET]
