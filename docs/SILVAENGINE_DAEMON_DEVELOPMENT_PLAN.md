@@ -3,6 +3,15 @@
 Status: planning baseline
 Last updated: 2026-09-10
 
+> **2026-09-12 update**: the `capability_mcp_plugin` plugin described below was
+> retired and removed from `silvaengine_daemon`/`silvaengine_gateway` routing.
+> Its GraphQL compatibility surface was absorbed directly into
+> Banyanos's `capability_engine`, which now talks to `mcp_protocol_plugin`
+> over HTTP through the gateway (see
+> `capability_engine/docs/CAPABILITY_MCP_PLUGIN_MERGE_PLAN.md`) instead of
+> being a separately-routed daemon plugin. The sections below referencing
+> `capability_mcp_plugin` are historical context for that now-superseded plan.
+
 ## Goal
 
 `silvaengine_daemon` provides the protocol-neutral daemon layer behind

@@ -125,9 +125,9 @@ def register_entities(
         ])
 
     A single gateway process typically loads several plugins against the
-    same backend (a2a_protocol_plugin, mcp_protocol_plugin,
-    capability_mcp_plugin, ...), each calling this once at startup with its
-    own specs. This *extends* the shared list rather than replacing it —
+    same backend (a2a_protocol_plugin, mcp_protocol_plugin, ...), each
+    calling this once at startup with its own specs. This *extends* the
+    shared list rather than replacing it —
     a plain assignment here would let the last plugin to initialize silently
     wipe out every earlier plugin's entities, so ``get_repo()`` would then
     raise "No repository registered" for their entity types even though

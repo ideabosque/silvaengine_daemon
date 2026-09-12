@@ -14,10 +14,7 @@ def test_load_default_dispatch_map() -> None:
     dispatch_map = load_dispatch_map()
     assert dispatch_map["a2a_jsonrpc"] == "a2a_protocol_plugin.main:dispatch_a2a"
     assert dispatch_map["mcp_graphql"] == "mcp_protocol_plugin.main:dispatch_graphql"
-    assert (
-        dispatch_map["capability_mcp_graphql"]
-        == "capability_mcp_plugin.main:dispatch_graphql"
-    )
+    assert "capability_mcp_graphql" not in dispatch_map
 
 
 def test_get_dispatch_ref_rejects_unknown_route_key() -> None:

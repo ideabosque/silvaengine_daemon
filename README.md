@@ -27,7 +27,6 @@ The related project split is:
 | `silvaengine_daemon` | Shared daemon runtime substrate that resolves YAML routing and dispatches requests to plugins. |
 | `a2a_protocol_plugin` | A2A SDK, JSON-RPC, agent card, task, push, and bridge behavior. |
 | `mcp_protocol_plugin` | Native MCP runtime, catalog, tool/resource/prompt handling, package lifecycle, and external MCP proxying. |
-| `C:\Users\bibo7\gitrepo\banyanos\capability_mcp_plugin` | Capability-facing MCP compatibility API migrated from the current `mcp_daemon_engine` capability files. |
 
 ## Docs
 

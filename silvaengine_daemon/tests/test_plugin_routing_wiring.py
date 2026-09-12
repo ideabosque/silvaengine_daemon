@@ -46,11 +46,10 @@ _SIBLING_PARENTS = [
 def _register_all_sibling_plugin_checkouts() -> None:
     """Add every sibling plugin checkout to ``sys.path``, once.
 
-    Some plugins depend on other plugins directly (e.g. capability_mcp_plugin
-    imports mcp_protocol_plugin's Config), so resolving one route's package
-    in isolation isn't enough — register every checkout found so cross-plugin
-    imports succeed the same way they would in a real deployment where all
-    plugins are installed together.
+    Some plugins depend on other plugins' packages directly, so resolving
+    one route's package in isolation isn't enough — register every checkout
+    found so cross-plugin imports succeed the same way they would in a real
+    deployment where all plugins are installed together.
     """
     for parent in _SIBLING_PARENTS:
         if not parent.is_dir():

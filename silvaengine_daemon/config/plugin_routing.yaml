@@ -4,7 +4,6 @@ router:
   plugin_module_files:
     - plugins/a2a_protocol_plugin.yaml
     - plugins/mcp_protocol_plugin.yaml
-    - plugins/capability_mcp_plugin.yaml
   routes:
     - name: a2a_graphql
       plugin: a2a_protocol_plugin
@@ -39,6 +38,3 @@ router:
     - name: mcp_info
       plugin: mcp_protocol_plugin
       plugin_route: info
-    - name: capability_mcp_graphql
-      plugin: capability_mcp_plugin
-      plugin_route: graphql

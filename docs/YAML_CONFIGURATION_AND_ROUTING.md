@@ -23,8 +23,7 @@ silvaengine_daemon/
     |-- plugin_routing.yaml
     `-- plugins/
         |-- a2a_protocol_plugin.yaml
-        |-- mcp_protocol_plugin.yaml
-        `-- capability_mcp_plugin.yaml
+        `-- mcp_protocol_plugin.yaml
 ```
 
 `plugin_routing.yaml` owns daemon-internal plugin dispatch keys and points to
@@ -72,7 +71,6 @@ router:
   plugin_module_files:
     - plugins/a2a_protocol_plugin.yaml
     - plugins/mcp_protocol_plugin.yaml
-    - plugins/capability_mcp_plugin.yaml
   routes:
     - name: a2a_jsonrpc
       plugin: a2a_protocol_plugin
@@ -85,9 +83,6 @@ router:
       plugin_route: jsonrpc
     - name: mcp_graphql
       plugin: mcp_protocol_plugin
-      plugin_route: graphql
-    - name: capability_mcp_graphql
-      plugin: capability_mcp_plugin
       plugin_route: graphql
 ```
 
@@ -152,25 +147,6 @@ plugin:
       partition_policy: endpoint_part
       methods:
         - POST
-    graphql:
-      dispatch: dispatch_graphql
-      partition_policy: request_context
-      methods:
-        - POST
-```
-
-Example `silvaengine_daemon/config/plugins/capability_mcp_plugin.yaml`:
-
-```yaml
-version: 1
-plugin:
-  name: capability_mcp_plugin
-  package: capability_mcp_plugin
-  enabled: true
-  protocol: capability_mcp
-  settings:
-    legacy_id_aliases_enabled: true
-  routes:
     graphql:
       dispatch: dispatch_graphql
       partition_policy: request_context

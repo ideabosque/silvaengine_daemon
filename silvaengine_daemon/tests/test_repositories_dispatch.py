@@ -2,14 +2,14 @@
 """Tests for the shared repository dispatch registry.
 
 A single gateway process loads several plugins against the same backend
-(a2a_protocol_plugin, mcp_protocol_plugin, capability_mcp_plugin, ...), and
-each calls ``register_entities(backend, specs)`` once at startup. Before this
-fix, that call replaced the shared entity-spec list outright, so whichever
-plugin registered last silently erased every earlier plugin's entities —
+(a2a_protocol_plugin, mcp_protocol_plugin, ...), and each calls
+``register_entities(backend, specs)`` once at startup. Before this fix, that
+call replaced the shared entity-spec list outright, so whichever plugin
+registered last silently erased every earlier plugin's entities —
 ``get_repo()`` would then raise "No repository registered" for their entity
 types the first time a *different* plugin's request happened to trigger lazy
 initialization first. This was caught live: ``ai_agent_core_engine`` calling
-into ``capability_mcp_plugin``'s MCP config fetch failed with exactly that
+into ``mcp_protocol_plugin``'s MCP config fetch failed with exactly that
 error because ``a2a_protocol_plugin`` had registered after
 ``mcp_protocol_plugin`` and wiped out its ``mcp_function`` entity spec.
 """
