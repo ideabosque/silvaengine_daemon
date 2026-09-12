@@ -233,12 +233,23 @@ def _register_specs(
 
 
 def clear_registry() -> None:
-    """Clear all registered repositories and entity specs (useful for tests)."""
+    """Clear resolved repository instances (useful for tests).
+
+    Deliberately leaves ``_dynamodb_entity_specs``/``_postgresql_entity_specs``
+    untouched. Plugins register their entity specs once, at import time
+    (e.g. ``mcp_protocol_plugin.models.repositories.dispatch`` calling
+    ``register_entities()`` at module load) — that registration never runs
+    again, so a test suite that calls ``clear_registry()`` to force a fresh
+    ``get_repo()`` resolution (as ``mcp_protocol_plugin``'s own
+    ``test_dual_backend_guard.py`` does) would permanently lose those specs
+    if this cleared them too, since nothing re-declares them afterward.
+    ``register_entities()`` already deduplicates repeated ``(module_path,
+    class_name)`` entries, so re-registering after a clear is harmless if a
+    caller needs to do that instead.
+    """
     global _dynamodb_repos_initialized, _postgresql_repos_initialized
     _repo_registry["dynamodb"].clear()
     _repo_registry["postgresql"].clear()
-    _dynamodb_entity_specs.clear()
-    _postgresql_entity_specs.clear()
     _dynamodb_repos_initialized = False
     _postgresql_repos_initialized = False
 

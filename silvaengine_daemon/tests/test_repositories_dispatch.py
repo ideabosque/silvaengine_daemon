@@ -22,9 +22,18 @@ from silvaengine_daemon.repositories import dispatch
 
 @pytest.fixture(autouse=True)
 def _reset_registry():
-    dispatch.clear_registry()
+    # clear_registry() deliberately leaves entity_specs alone (plugins
+    # register those once, at import time — see clear_registry's own
+    # docstring), so these tests reset them directly to get a clean slate
+    # between test cases.
+    def _reset():
+        dispatch.clear_registry()
+        dispatch._dynamodb_entity_specs.clear()
+        dispatch._postgresql_entity_specs.clear()
+
+    _reset()
     yield
-    dispatch.clear_registry()
+    _reset()
 
 
 def test_register_entities_merges_across_plugins() -> None:
